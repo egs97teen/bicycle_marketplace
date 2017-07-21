@@ -1,0 +1,11 @@
+<div id="search_bar">
+</div>
+<div id="bike_list">
+	<div class="bike" *ngFor="let bike of all_bikes">
+		<img [src]=bike.imageURL>
+		<p>{{bike.title}}</p>
+		<p>{{bike.description}}</p>
+		<p>{{bike.price}}</p>
+		<p>{{bike.location}}</p>
+	</div>
+</div>

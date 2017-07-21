@@ -1,0 +1,103 @@
+<div id="create">
+	<h1>Create Listing</h1>
+	<form (submit)="create_bike(); createBike.reset()" #createBike='ngForm'>
+		<label for="title">Title:<input 
+			type="text"
+			name="title"
+			required
+			[(ngModel)]='new_bike.title'
+			#title='ngModel'>
+			<p *ngIf="!title.valid && (title.dirty || title.touched)">Title is required</p>
+		</label>
+		<label for="description">Description:<input 
+			type="text"
+			name="description"
+			required
+			maxlength="200"
+			[(ngModel)]='new_bike.description'
+			#description='ngModel'>
+			<p *ngIf="description.errors?.maxlength && (description.dirty || description.touched)">Description cannot exceed 200 characters</p>
+			<p *ngIf="description.errors?.required && (description.dirty || description.touched)">Description is required</p>
+		</label>
+		<label for="price">Price:<input 
+			type="number"
+			name="price"
+			required
+			[(ngModel)]='new_bike.price'
+			#price='ngModel'>
+			<p *ngIf="!price.valid && (price.dirty || price.touched)">Price is required</p>
+		</label>
+		<label for="location">Location:<input 
+			type="text"
+			name="location"
+			required
+			[(ngModel)]='new_bike.location'
+			#location='ngModel'>
+			<p *ngIf="!location.valid && (location.dirty || location.touched)">Location is required</p>
+		</label>
+		<label for="imageURL">Image Upload<input
+			type="text"
+			name="imageURL"
+			required
+			[(ngModel)]='new_bike.imageURL'
+			#imageURL='ngModel'>
+			<p *ngIf="!imageURL.valid && (imageURL.dirty || imageURL.touched)">Image is required</p>
+			<img *ngIf="imageURL.valid" [src]=new_bike.imageURL>
+		</label>
+		<input type="submit" [disabled]="!createBike.form.valid" value="Create">
+	</form>
+</div>
+
+<div id="edit">
+	<h1>Edit/Delete Listings</h1>
+	<div class="bike_info" *ngFor="let user_bike of user_bikes; index as idx">
+		<h2>{{ user_bike | json}}</h2>
+		<form (submit)="updateBike(user_bike._id, user_bike)" #updateBike='ngForm'>
+			<label for="title">Title:<input 
+			type="text"
+			name="title"
+			required
+			[(ngModel)]='user_bike.title'
+			#edit_title='ngModel'>
+			<p *ngIf="!edit_title.valid && (edit_title.dirty || edit_title.touched)">Title is required</p>
+		</label>
+		<label for="description">Description:<input 
+			type="text"
+			name="description"
+			required
+			maxlength="200"
+			[(ngModel)]='user_bike.description'
+			#edit_description='ngModel'>
+			<p *ngIf="edit_description.errors?.maxlength && (edit_description.dirty || edit_description.touched)">Description cannot exceed 200 characters</p>
+			<p *ngIf="edit_description.errors?.required && (edit_description.dirty || edit_description.touched)">Description is required</p>
+		</label>
+		<label for="price">Price:<input 
+			type="number"
+			name="price"
+			required
+			[(ngModel)]='user_bike.price'
+			#edit_price='ngModel'>
+			<p *ngIf="!edit_price.valid && (edit_price.dirty || edit_price.touched)">Price is required</p>
+		</label>
+		<label for="location">Location:<input 
+			type="text"
+			name="location"
+			required
+			[(ngModel)]='user_bike.location'
+			#edit_location='ngModel'>
+			<p *ngIf="!edit_location.valid && (edit_location.dirty || edit_location.touched)">Location is required</p>
+		</label>
+		<label for="imageURL">Image Upload<input
+			type="text"
+			name="imageURL"
+			required
+			[(ngModel)]='user_bike.imageURL'
+			#edit_imageURL='ngModel'>
+			<p *ngIf="!edit_imageURL.valid && (edit_imageURL.dirty || edit_imageURL.touched)">Image is required</p>
+			<img *ngIf="edit_imageURL.valid" [src]=user_bike.imageURL>
+		</label>
+		<input type="submit" [disabled]="!updateBike.form.valid" value="Update">
+		<button (click)=deleteBike(user_bike._id)>Delete</button>
+		</form>
+	</div>
+</div>

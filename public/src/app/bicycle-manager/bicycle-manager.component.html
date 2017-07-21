@@ -1,0 +1,10 @@
+<h1>Bicycle Manager</h1>
+<h2>Welcome {{ user.first_name }}</h2>
+<h2><ul>
+	<li><a [routerLink]="['/bicycle_manager', 'browse']">Browse</a></li>
+	<li>|</li>
+	<li><a [routerLink]="['/bicycle_manager', 'listings']">Listings</a></li>
+	<li>|</li>
+	<li><a href ="" (click)="logout()">Log off</a></li>
+</ul></h2>
+<router-outlet></router-outlet>
