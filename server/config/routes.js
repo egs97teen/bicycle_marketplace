@@ -13,4 +13,5 @@ module.exports = (app) => {
 	app.get('/api/user_bikes', bicycles.user_bikes);
 	app.post('/api/update_bike/:bike_id', bicycles.update);
 	app.delete('/api/delete_bike/:bike_id', bicycles.delete);
+	app.get('/api/user_bike/:bike_user_id', users.findByBike);
 }

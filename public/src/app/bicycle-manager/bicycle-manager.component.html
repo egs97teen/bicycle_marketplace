@@ -1,5 +1,5 @@
 <h1>Bicycle Manager</h1>
-<h2>Welcome {{ user.first_name }}</h2>
+<h2 *ngIf="user">Welcome {{ user.first_name }}</h2>
 <h2><ul>
 	<li><a [routerLink]="['/bicycle_manager', 'browse']">Browse</a></li>
 	<li>|</li>

@@ -1,11 +1,18 @@
 <div id="search_bar">
 </div>
 <div id="bike_list">
-	<div class="bike" *ngFor="let bike of all_bikes">
+	<h1>{{ user | json }}</h1>
+	<div class="bike" *ngFor="let bike of all_bikes, index as idx">
 		<img [src]=bike.imageURL>
 		<p>{{bike.title}}</p>
 		<p>{{bike.description}}</p>
 		<p>{{bike.price}}</p>
 		<p>{{bike.location}}</p>
+		<button *ngIf="bike._user == user._id" (click)="deleteBike(bike._id)">DELETE</button>
+		<div class="contact" *ngIf="!(bike._user == user._id)">
+			<button *ngIf="show[idx]" (click)="show_contact(bike._user, idx)">Contact</button>
+			<p *ngIf="!show[idx]">{{bike_owner.first_name}} {{bike_owner.last_name}}</p>
+			<p *ngIf="!show[idx]">{{bike_owner.email}}</p>
+		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <h1>Bicycle Marketplace</h1>
 <div id="random_bike">
 	<h2>Bike of the Day!</h2>
-	<div id="bike">
+	<div id="bike" *ngIf="bikes">
 		<img [src]=bikes[index].imageURL>
 		<p>{{bikes[index].title}}</p>
 		<p>{{bikes[index].description}}</p>

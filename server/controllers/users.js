@@ -80,6 +80,17 @@ module.exports = {
 				}
 				return res.status(400).send(err);
 			} else {
+				console.log("I FOUND THE USER");
+				return res.json(user);
+			}
+		})
+	},
+
+	findByBike: (req, res) => {
+		User.findOne({_id: req.params.bike_user_id}, (err, user) => {
+			if (err) {
+				console.log(err);
+			} else {
 				return res.json(user);
 			}
 		})

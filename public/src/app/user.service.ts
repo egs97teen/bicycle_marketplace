@@ -25,5 +25,9 @@ export class UserService {
   getUser() {
   	return this._http.get('/api/get_user').map( data => data.json() ).toPromise();
   }
+
+  findUserByBike(bike_user_id) {
+    return this._http.get('/api/user_bike/'+ bike_user_id).map (data => data.json() ).toPromise();
+  }
   
 }

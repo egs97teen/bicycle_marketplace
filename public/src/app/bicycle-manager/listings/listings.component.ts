@@ -33,12 +33,14 @@ export class ListingsComponent implements OnInit {
   	this._bicycleService.getUserBikes().then( data => this.user_bikes = data ).catch( err => this.errors = err );
   }
 
-  updateBike(bike_id, user_bike) {
-  	this._bicycleService.updateBike(bike_id, this.user_bike).then( data => this.getUserBikes() ).catch( err => this.errors = err );
-  }
 
   deleteBike(bike_id) {
   	this._bicycleService.deleteBike(bike_id).then( data => this.getUserBikes() ).catch( err => this.errors = err );
+  }
+
+   updateBikeFunction(user_bike){
+    console.log("This function actually works")
+    this._bicycleService.updateBike(user_bike._id, user_bike).then( data => this.getUserBikes() ).catch( err => this.errors = err );
   }
 
 }

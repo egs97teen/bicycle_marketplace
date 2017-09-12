@@ -52,7 +52,7 @@
 	<h1>Edit/Delete Listings</h1>
 	<div class="bike_info" *ngFor="let user_bike of user_bikes; index as idx">
 		<h2>{{ user_bike | json}}</h2>
-		<form (submit)="updateBike(user_bike._id, user_bike)" #updateBike='ngForm'>
+		<form  (submit)="updateBikeFunction(user_bike)"  #updateBike='ngForm'>
 			<label for="title">Title:<input 
 			type="text"
 			name="title"
@@ -96,8 +96,8 @@
 			<p *ngIf="!edit_imageURL.valid && (edit_imageURL.dirty || edit_imageURL.touched)">Image is required</p>
 			<img *ngIf="edit_imageURL.valid" [src]=user_bike.imageURL>
 		</label>
-		<input type="submit" [disabled]="!updateBike.form.valid" value="Update">
-		<button (click)=deleteBike(user_bike._id)>Delete</button>
+		<input type="submit"  [disabled]="!updateBike.form.valid" value="Update">
 		</form>
+		<button (click)=deleteBike(user_bike._id)>Delete</button>
 	</div>
 </div>

@@ -80,7 +80,7 @@ module.exports = {
 					}
 					return res.status(400).send(errors);
 				} else {
-					console.log("BIKE QUERY", bikes);
+					// console.log("BIKE QUERY", bikes);
 					return res.json(bikes);
 				}
 			})
@@ -88,7 +88,8 @@ module.exports = {
 	},
 
 	update: (req, res) => {
-		Bicycle.findOne({_id: req.params.bike_id}, (err, bike) => {
+		console.log("IN THE UPDATE");
+		Bicycle.findOneAndUpdate({_id: req.params.bike_id}, req.body, (err, bike) => {
 			if (err) {
 				console.log("ERROR FINDING THE BIKE");
 				var errors = [];
@@ -97,15 +98,8 @@ module.exports = {
 				}
 				return res.status(400).send(errors);
 			} else {
-				console.log("FOUND THE BIKE TO BE UPDATED");
-				var bicycle = new Bicycle(req.body);
-				bicycle.save( (err) => {
-					if (err) {
-						console.log("ERR")
-					} else {
-						return res.json(true);
-					}
-				})
+				console.log("UPDATED")
+				res.json(true);
 			}
 		})
 	},
